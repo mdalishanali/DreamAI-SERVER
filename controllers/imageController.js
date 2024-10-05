@@ -1,5 +1,6 @@
 const Together = require("together-ai");
 const { z } = require("zod");
+const ImageModel = require("../model/ImageModel");
 
 const apiKey =process.env.TOGETHER_API_KEY;
 
@@ -28,6 +29,10 @@ const generateImage = async (req, res) => {
       steps: 3,
       response_format: "base64",
     });
+
+    // const newImage = new ImageModel({ prompt, imageUrl: response.data[0].b64_json });
+    // await newImage.save();
+
 
     // Return the generated image URL
     return res.status(200).json({ imageUrl: response.data[0] });
