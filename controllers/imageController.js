@@ -1,6 +1,7 @@
 const Together = require("together-ai");
 const { z } = require("zod");
 const ImageModel = require("../model/ImageModel");
+const { uploadBase64Image } = require("../utils");
 
 const apiKey =process.env.TOGETHER_API_KEY;
 
@@ -29,13 +30,10 @@ const generateImage = async (req, res) => {
       steps: 3,
       response_format: "base64",
     });
-
-    // const newImage = new ImageModel({ prompt, imageUrl: response.data[0].b64_json });
-    // await newImage.save();
-
-
-    // Return the generated image URL
-    return res.status(200).json({ imageUrl: response.data[0] });
+    const imageUrl = await uploadBase64Image(response?.data[0]?.b64_json);
+    const newImage = new ImageModel({ prompt, imageUrl });
+    await newImage.save();
+    return res.status(200).json({ imageUrl });
   } catch (error) {
     console.error("Error generating image:", error); // Log the error for debugging
     return res.status(500).json({ error: error.message });

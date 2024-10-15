@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 
 const PORT = 7777;
+const connectDb = require("./config/db");
+connectDb()
 const imageRoutes = require("./routes/imageRoute");
 app.use("/api", imageRoutes);
 

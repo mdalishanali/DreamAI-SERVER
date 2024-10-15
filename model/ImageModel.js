@@ -12,7 +12,8 @@ const imageSchema = new mongoose.Schema({
     required: true,
   },
 },{
-    timestamps:true
+    timestamps:true,
+    versionKey:false
 });
 
 // Create the model from the schema
