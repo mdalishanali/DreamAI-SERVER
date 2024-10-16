@@ -22,8 +22,8 @@ const generateImage = async (req, res) => {
 
     let response = await together.images.create({
       prompt,
-    //   model: "black-forest-labs/FLUX.1-schnell-Free",
-    model: "black-forest-labs/FLUX.1-schnell",
+      // model: "black-forest-labs/FLUX.1-schnell-Free",
+    // model: "black-forest-labs/FLUX.1-schnell",
     // prompt: "Cats eating popcorn",
       width: 1024,
       height: 768,
